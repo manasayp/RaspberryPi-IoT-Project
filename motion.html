@@ -1,0 +1,29 @@
+<html>
+      <head>
+      <script type="text/javascript"
+       src="node_modules/dygraphs/dygraph-combined-dev.js"></script>
+      </head>
+      <body>
+      <div id="graphdiv1"
+      style="width:100%; height:100%"></div>
+      <script type="text/javascript">
+       g1 = new Dygraph(
+       document.getElementById("graphdiv1"),
+      "motion.csv", // path to CSV file
+      {title: 'Motion Detection',
+       legend: 'always',
+       strokeWidth: 1.5,
+       visibility: [true],
+       xLabelHeight: 30,
+     yLabelHeight: 30,
+     valueRange:[0,2],
+     xlabel:'Time',
+     ylabel:'Detected'}
+   );
+
+   window.intervalId = setInterval(function() {
+          g1.updateOptions( { 'file': "motion.csv" } );
+   }, 1000);
+   </script>
+   </body>
+   </html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+<script type="text/javascript"
+  src="node_modules/dygraphs/dygraph-combined-dev.js"></script>
+</head>
+<body>
+<div id="graphdiv2"
+  style="width:25%; height:50%"></div>
+<div id="graphdiv3"
+  style="width:25%; height:50%"></div>
+<div id="graphdiv4"
+  style="width:25%; height:50%"></div>
+
+<script type="text/javascript">
+    g2 = new Dygraph(
+    document.getElementById("graphdiv2"),
+    "temperatures.csv", // path to CSV file
+    {title: 'Temperature',
+     legend: 'always',
+     strokeWidth: 1.5,
+     visibility: [true,false],
+     xLabelHeight: 30,
+     yLabelHeight: 30,
+     valueRange:[0,50],
+     xlabel:'Time',
+     ylabel:'Deg C'}
+ 
+  );
+ 
+g4 = new Dygraph(
+    document.getElementById("graphdiv4"),
+    "temperatures.csv", // path to CSV file
+    {title: 'Humidity',
+     legend: 'always',
+     strokeWidth: 1.5,
+     visibility: [false,true],
+     xLabelHeight: 30,
+     yLabelHeight: 30,
+     valueRange:[0,100],
+     xlabel:'Time',
+     ylabel:'%'}
+
+  );
+
+
+  window.intervalId = setInterval(function() {
+          g2.updateOptions( { 'file': "temperatures.csv" } );
+      g4.updateOptions( {'file':"temperatures.csv"});
+        }, 1000);
+</script>
+</body>
+</html>
